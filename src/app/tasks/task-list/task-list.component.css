@@ -1,0 +1,16 @@
+/* .mat-column
+{ 
+    text-align: right;
+    display: flex;
+} */
+
+.table
+{
+    width: 100%;
+    background-color: aqua;   
+}
+
+#someId
+{
+    background-color: aqua;
+}

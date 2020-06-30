@@ -5,19 +5,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-// test
-import { MatSliderModule, MatSlider  } from '@angular/material/slider';
+import { TasksModule } from './tasks/tasks.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // TasksComponent 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    // test
-    MatSliderModule,
+    TasksModule,
     BrowserAnimationsModule
   ],
   providers: [],

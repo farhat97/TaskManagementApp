@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ITask } from 'src/app/shared/interfaces';
+import { TaskService } from '../../shared/task.service';
 
 @Component({
   selector: 'app-task-list',
@@ -23,7 +24,7 @@ export class TaskListComponent implements OnInit {
                   'Task Name', 'Task Description', 'Options'];
 
   ngOnInit(): void {
-        
+    
   }
 
   constructor() { }

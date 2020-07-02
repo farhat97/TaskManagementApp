@@ -5,15 +5,14 @@ import { Injectable } from '@angular/core';
 import { Adapter } from './adapter';
 
 export class Task {
-    constructor(
-        taskId: number,
-        taskType: string,
-        contactPerson: string,
-        dueDate: string, // TODO: change to date type
-        userId: number,
-        taskName: string,
-        taskDescription: string
-    ) { }
+    taskId: number;
+    taskType: string;
+    contactPerson: string;
+    dueDate: string; // TODO: change to date type
+    userId: number;
+    taskName: string;
+    taskDescription: string;
+    constructor() { }
 }
 
 @Injectable({
@@ -23,9 +22,16 @@ export class Task {
 export class TaskAdapter implements Adapter<Task> {
     
     adapt(item: any): Task {
-        return new Task(item.id, item.taskType, item.contactPerson, 
-                        item.dueDate, item.userId, item.TaskName,
-                        item.taskDescription);
+        let newTask = new Task();
+        newTask.taskId = item.taskId;
+        newTask.taskType = item.taskType;
+        newTask.contactPerson = item.contactPerson;
+        newTask.dueDate = item.dueDate;
+        newTask.userId = item.userId;
+        newTask.taskName = item.taskName;
+        newTask.taskDescription = item.taskDescription;
+        
+        return newTask;
     }
 
 }

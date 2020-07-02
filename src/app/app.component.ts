@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { TaskService } from './shared/task.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +9,9 @@ import { TaskService } from './shared/task.service';
 export class AppComponent implements OnInit {
   title = 'TaskManagementApp';
 
-  // TODO: testing task service calling api
-  constructor(private taskService: TaskService) { }
+  constructor() { }
   
   ngOnInit() {
-    this.taskService.getTasks().subscribe(() => {
-      console.log('found task!');
-    });
   }
 
 

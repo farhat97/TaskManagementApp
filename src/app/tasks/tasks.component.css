@@ -1,0 +1,27 @@
+.taskFilters
+{
+    width: 100%;
+    display: flex;
+    background-color: rgba(110, 110, 110, 0.2);
+}
+
+.taskFilterRow
+{
+    width: 50%;
+    text-align: left;
+}
+
+.filterElement
+{
+    display: inline-block;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+/* change color for material checkbox */
+/* TODO: customize color */
+::ng-deep .mat-checkbox-checked .mat-checkbox-background 
+{
+    background-color: darkcyan !important;
+}
+

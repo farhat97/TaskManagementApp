@@ -1,2 +1,38 @@
-<p>tasks works!</p>
+<p>Task List</p>
+
+<!-- show # of tasks filter -->
+<div class="taskFilters">
+    <div class="taskFilterRow">
+        <p class="filterElement">Show </p>
+        <select matNativeControl class="filterElement">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="20">20</option>
+            <option value="30">30</option>
+        </select>
+        <p class="filterElement">tasks</p>
+    </div>
+
+    <div class="taskFilterRow">
+        <p class="filterElement">Order By: </p>
+        <!-- TODO: retrieve options from task properties! -->
+        <select matNativeControl class="filterElement">
+            <option value="ContactName">Contact Name</option>
+            <option value="UserId">User ID</option>
+            <option value="DueDate">Due Date</option>
+        </select>
+        <p class="filterElement">Descending </p>
+        <input type="checkbox" style="margin-left: 1%;">
+        
+        <!-- TODO: material checkbox has a weird alignemnt-->
+        <!-- <mat-checkbox class="filterElement" style="text-align: center;">
+            Descending
+        </mat-checkbox> -->
+
+        <p class="filterElement">Search: </p>
+        <input type="text" class="filterElement">
+
+    </div>
+</div>
+<br />
 <app-task-list></app-task-list>

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TaskService } from 'src/app/shared/task.service';
+
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -7,12 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTaskComponent implements OnInit {
 
-  constructor() { }
+  constructor(private taskService: TaskService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(contactForm) {
     console.log(contactForm.value);
+
+    // pass contactForm object to post method
+    this.taskService.addNewTask(contactForm.value);
   }
 }

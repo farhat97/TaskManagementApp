@@ -29,7 +29,10 @@ export class TasksComponent implements OnInit {
 
   // used to open new task window
   openNewTaskDialog() {
-    const dialogRef = this.newTaskDialog.open(AddTaskComponent);
+    const dialogRef = this.newTaskDialog.open(AddTaskComponent, {
+      height: '600px',
+      width: '1000px',
+    });
     
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);

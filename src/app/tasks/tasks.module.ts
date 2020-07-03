@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { TasksComponent } from './tasks.component';
 import { TaskListComponent } from './task-list/task-list.component';
@@ -9,16 +10,19 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [ TasksComponent, TaskListComponent, AddTaskComponent ],
     imports: [ 
-        MatTableModule, 
+        MatTableModule,
+        CommonModule,
         HttpClientModule, 
         MatSelectModule, 
         MatCheckboxModule,
         MatDialogModule,
-        MatButtonModule 
+        MatButtonModule,
+        FormsModule
     ],
     exports: [ TasksComponent, TaskListComponent ],
     providers: [ ]

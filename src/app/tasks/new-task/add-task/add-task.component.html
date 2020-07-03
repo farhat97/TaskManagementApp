@@ -1,1 +1,36 @@
-<p>add-task works!</p>
+<!-- <form>
+    <p> Task Type: </p> <input type="text"> <br />
+    <p> Contact Name: </p> <input type="text"> <br />
+    <p> Task title: </p> <input type="text"> <br />
+    <p> Due Date: </p> <input type="text"> <br />
+    <p> Task Description: </p> <input type="text"> <br />
+</form> -->
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+    <div class="form-group">
+        <label for="taskType"> Task Type </label>
+        <input type="text" class="form-control" name="taskType" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="contactName"> Contact Name </label>
+        <input type="text" class="form-control" name="contactName" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="taskTitle"> Task Title </label>
+        <input type="text" class="form-control" name="taskTitle" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="dueDate"> Due Date </label>
+        <input type="text" class="form-control" name="dueDate" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="taskDescription"> Task Description </label>
+        <input type="text" class="form-control" name="taskDescription" ngModel>
+    </div>
+    <div class="form-group">
+        <button type="submit">Add Task</button>
+    </div>
+
+    <pre> {{ contactForm.value | json }} </pre>
+
+</form>

@@ -12,4 +12,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSubmit(contactForm) {
+    console.log(contactForm.value);
+  }
 }

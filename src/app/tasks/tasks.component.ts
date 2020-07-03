@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ITask } from '../shared/interfaces';
+import { MatDialog } from '@angular/material/dialog';
+import { AddTaskComponent } from './new-task/add-task/add-task.component';
 
 @Component({
   selector: 'app-tasks',
@@ -23,7 +25,16 @@ export class TasksComponent implements OnInit {
   
   
 
-  constructor() { }
+  constructor(private newTaskDialog: MatDialog) { }
+
+  // used to open new task window
+  openNewTaskDialog() {
+    const dialogRef = this.newTaskDialog.open(AddTaskComponent);
+    
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 
   ngOnInit(): void {
   }

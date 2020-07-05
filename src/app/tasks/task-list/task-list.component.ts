@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 
 import { ITask } from 'src/app/shared/interfaces';
 import { TaskService } from '../../shared/task.service';
 import { Task } from 'src/app/shared/Task.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-task-list',
@@ -11,7 +12,7 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: [ './task-list.component.css' ]
 })
 
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, AfterViewInit {
     
   testData: ITask[] = [
     { taskId: 1, taskType: 'Development', contactPerson: 'Sunil', dueDate: 'today', 
@@ -25,9 +26,11 @@ export class TaskListComponent implements OnInit {
   taskList: Task[] = [];
   // used for rendering material ui table
   taskListDataSource;
+  // used for table sorting
+  @ViewChild(MatSort) sort: MatSort;
 
-  tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
-                  'Task Name', 'Task Description'];
+  tableColumns = ['taskId', 'taskType', 'contactPerson', 'dueDate', 'userId',
+                  'taskName', 'taskDescription'];
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => {
@@ -48,10 +51,18 @@ export class TaskListComponent implements OnInit {
 
       this.taskListDataSource = new MatTableDataSource(this.taskList);
 
+      // enable table sort
+      this.taskListDataSource.sort = this.sort;
+
     });
 
     console.log('after assigning: ', this.taskList);
   }
 
   constructor(private taskService: TaskService) { }
+  
+  ngAfterViewInit(): void {
+    this.taskListDataSource = new MatTableDataSource(this.taskList);
+    this.taskListDataSource.sort = this.sort;
+  }
 }

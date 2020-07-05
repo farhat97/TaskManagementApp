@@ -34,7 +34,10 @@
         <mat-header-cell *matHeaderCellDef> Options </mat-header-cell>
         <mat-cell *matCellDef="let task">
             <button mat-flat-button color="primary" class="taskOption">Edit</button>
-            <button mat-flat-button color="warn" class="taskOption">Delete</button>
+            <button mat-flat-button 
+                    color="warn" 
+                    class="taskOption"
+                    (click)="deleteTask(task)">Delete</button>
         </mat-cell>
     </ng-container>
 

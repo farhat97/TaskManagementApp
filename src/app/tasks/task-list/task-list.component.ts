@@ -4,6 +4,8 @@ import { ITask } from 'src/app/shared/interfaces';
 import { TaskService } from '../../shared/task.service';
 import { Task } from 'src/app/shared/Task.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component';
 
 @Component({
   selector: 'app-task-list',
@@ -53,5 +55,21 @@ export class TaskListComponent implements OnInit {
     console.log('after assigning: ', this.taskList);
   }
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) { }
+
+  deleteTask(row) {
+    console.log('selected row: ', row);
+
+    // call confirmation dialog
+    const dialogRef = this.deleteConfirmation.open(DeleteTaskDialogComponent, {
+      disableClose: true
+    });
+
+    // pass row data
+    dialogRef.componentInstance.taskToDelete = row;
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
 }

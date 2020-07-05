@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [ TasksComponent, TaskListComponent, AddTaskComponent ],
@@ -22,7 +23,8 @@ import { FormsModule } from '@angular/forms';
         MatCheckboxModule,
         MatDialogModule,
         MatButtonModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     exports: [ TasksComponent, TaskListComponent ],
     providers: [ ]

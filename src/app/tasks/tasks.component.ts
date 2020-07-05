@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { ITask } from '../shared/interfaces';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTaskComponent } from './new-task/add-task/add-task.component';
+import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tasks',
@@ -23,9 +25,20 @@ export class TasksComponent implements OnInit {
   tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
                   'Task Name', 'Task Description', 'Options'];
   
+  // listen to queryParams in order to open New Task dialog window
+  routeQueryparam$: Subscription;
   
 
-  constructor(private newTaskDialog: MatDialog) { }
+  constructor(private newTaskDialog: MatDialog, 
+    private route: ActivatedRoute,
+    private router: Router) { 
+    
+      this.routeQueryparam$ = route.queryParams.subscribe(params => {
+        if(params['newTask'] === 'addNewTask') {
+          this.openNewTaskDialog();
+        }
+      })
+  }
 
   // used to open new task window
   openNewTaskDialog() {
@@ -37,10 +50,15 @@ export class TasksComponent implements OnInit {
     
     dialogRef.afterClosed().subscribe(result => {
       console.log(`Dialog result: ${result}`);
+      this.router.navigate(['.'], { relativeTo: this.route });
     });
   }
 
   ngOnInit(): void {
+
   }
 
+  ngOnDestroy() {
+    this.routeQueryparam$.unsubscribe();
+  }
 }

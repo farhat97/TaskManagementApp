@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 
 import { ITask } from 'src/app/shared/interfaces';
 import { TaskService } from '../../shared/task.service';
@@ -28,6 +28,9 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   taskListDataSource;
   // used for table sorting
   @ViewChild(MatSort) sort: MatSort;
+
+  // get filterBy text from parent component
+  @Input() filterBy: string = null;
 
   tableColumns = ['taskId', 'taskType', 'contactPerson', 'dueDate', 'userId',
                   'taskName', 'taskDescription'];
@@ -64,5 +67,12 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.taskListDataSource = new MatTableDataSource(this.taskList);
     this.taskListDataSource.sort = this.sort;
+  }
+
+  // apply filtering when there are changes in the component. In this case:
+  // TaskListComponent receives filterBy text from parent, which triggers the ngOnChanges()
+  ngOnChanges() {
+    console.log('change detected');
+    this.taskListDataSource.filter = this.filterBy.trim().toLocaleLowerCase();
   }
 }

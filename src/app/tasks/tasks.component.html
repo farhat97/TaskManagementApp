@@ -17,9 +17,9 @@
         <p class="filterElement">Order By: </p>
         <!-- TODO: retrieve options from task properties! -->
         <select matNativeControl class="filterElement">
-            <option value="ContactName">Contact Name</option>
-            <option value="UserId">User ID</option>
-            <option value="DueDate">Due Date</option>
+            <option value="contactName">Contact Name</option>
+            <option value="userId">User ID</option>
+            <option value="dueDate">Due Date</option>
         </select>
         <p class="filterElement">Descending </p>
         <input type="checkbox" style="margin-left: 1%;">
@@ -30,7 +30,7 @@
         </mat-checkbox> -->
 
         <p class="filterElement">Search: </p>
-        <input type="text" class="filterElement">
+        <input type="text" class="filterElement" (keyup)="filterElements($event.target.value)">
 
         <button class="filterElement" 
                 mat-flat-button 
@@ -41,4 +41,4 @@
     </div>
 </div>
 <br />
-<app-task-list></app-task-list>
+<app-task-list [filterBy]="filterByText"></app-task-list>

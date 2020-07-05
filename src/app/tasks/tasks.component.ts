@@ -23,7 +23,7 @@ export class TasksComponent implements OnInit {
   tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
                   'Task Name', 'Task Description', 'Options'];
   
-  
+  filterByText: string;
 
   constructor(private newTaskDialog: MatDialog) { }
 
@@ -40,7 +40,11 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+  }
+
+  filterElements(value: string) {
+    this.filterByText = value;
   }
 
 }

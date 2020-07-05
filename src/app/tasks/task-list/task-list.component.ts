@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit {
   taskListDataSource;
 
   tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
-                  'Task Name', 'Task Description'];
+                  'Task Name', 'Task Description', 'Options'];
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => {

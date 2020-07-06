@@ -67,7 +67,14 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     console.log('after assigning: ', this.taskList);
   }
   
-  constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) { }
+  constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) {
+    this.taskService.componentMethodCalled$.subscribe(() => {
+      console.log('method called from service, TaskListComponent.');
+
+      // call ngOnInit to update table data
+      this.ngOnInit();
+    })
+  }
   
   ngAfterViewInit(): void {
     this.taskListDataSource = new MatTableDataSource(this.taskList);

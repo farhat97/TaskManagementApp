@@ -27,7 +27,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
   taskList: Task[] = [];
   // used for rendering material ui table
-  taskListDataSource;
+  taskListDataSource = new MatTableDataSource([]);
   // used for table sorting
   @ViewChild(MatSort) sort: MatSort;
 
@@ -38,6 +38,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
                   'taskName', 'taskDescription', 'Options'];
 
   ngOnInit(): void {
+    this.taskListDataSource.data = this.taskList;
     this.taskService.getTasks().subscribe((tasks) => {
       
       // assign each retrieved task to the task list
@@ -53,8 +54,6 @@ export class TaskListComponent implements OnInit, AfterViewInit {
 
         this.taskList.push(currentTask);
       }
-
-      this.taskListDataSource = new MatTableDataSource(this.taskList);
 
       // enable table sort
       this.taskListDataSource.sort = this.sort;
@@ -74,8 +73,9 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   // apply filtering when there are changes in the component. In this case:
   // TaskListComponent receives filterBy text from parent, which triggers the ngOnChanges()
   ngOnChanges() {
-    console.log('change detected');
-    this.taskListDataSource.filter = this.filterBy.trim().toLocaleLowerCase();
+    if(this.taskListDataSource.data.length > 0) {
+      this.taskListDataSource.filter = this.filterBy.trim().toLocaleLowerCase();
+    }
   }
 
   deleteTask(row) {

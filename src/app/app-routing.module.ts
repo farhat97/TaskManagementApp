@@ -3,25 +3,30 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { TasksComponent } from './tasks/tasks.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { AuthGuard } from './shared/auth.guard';
+import { LoginComponent } from './login/login.component';
 
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: '',
     component: TasksComponent,
+    canActivate: [ AuthGuard ],
     children: [
-      { path: 'all', component: TaskListComponent },
-      // { path: '', component: TasksComponent }
+      { path: '', component: TaskListComponent },
     ]
-    // component: TaskListComponent // TODO: this is testing for the table rendering bug
   },
   {
     path: 'tasks',
     component: TaskListComponent
   },
   {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
     path: '**',
-    redirectTo: 'home' // all undefined routes go to home
+    redirectTo: '' // all undefined routes go to home
   }
 ];
 

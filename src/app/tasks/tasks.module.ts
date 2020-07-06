@@ -15,6 +15,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { RouterModule } from '@angular/router';
 
+import { LoginModule } from '../login/login.module';
+
 @NgModule({
     declarations: [ 
         TasksComponent, 
@@ -32,7 +34,8 @@ import { RouterModule } from '@angular/router';
         MatButtonModule,
         FormsModule,
         MatSortModule,
-        RouterModule
+        RouterModule,
+        LoginModule
     ],
     exports: [ TasksComponent, TaskListComponent ],
     providers: [ ]

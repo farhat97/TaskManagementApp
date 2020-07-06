@@ -1,0 +1,23 @@
+<!-- <p>login works!</p>
+<p>Username </p> <input type="text">
+<p>Password </p> <input type="password">
+<button>Login</button>
+<br />
+<br /> -->
+
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)">
+    <div class="form-group">
+        <label for="username"> Username </label>
+        <input type="text" class="form-control" name="Username" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="password"> Password </label>
+        <input type="password" class="form-control" name="Password" ngModel>
+    </div>
+
+    <div class="form-group">
+        <button mat-flat-button color="primary" type="submit">
+            Login
+        </button>
+    </div>
+</form> 

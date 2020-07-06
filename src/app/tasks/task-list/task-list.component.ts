@@ -35,7 +35,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
   @Input() filterBy: string = null;
 
   tableColumns = ['taskId', 'taskType', 'contactPerson', 'dueDate', 'userId',
-                  'taskName', 'taskDescription'];
+                  'taskName', 'taskDescription', 'Options'];
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => {

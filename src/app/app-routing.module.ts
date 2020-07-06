@@ -1,14 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
 import { TasksComponent } from './tasks/tasks.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 
 
 const routes: Routes = [
   {
     path: 'home',
-    component: TasksComponent
+    component: TasksComponent,
+    children: [
+      { path: 'all', component: TaskListComponent },
+      // { path: '', component: TasksComponent }
+    ]
+    // component: TaskListComponent // TODO: this is testing for the table rendering bug
+  },
+  {
+    path: 'tasks',
+    component: TaskListComponent
   },
   {
     path: '**',

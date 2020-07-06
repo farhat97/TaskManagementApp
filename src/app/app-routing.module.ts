@@ -9,7 +9,7 @@ import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     component: TasksComponent,
     canActivate: [ AuthGuard ],
     children: [
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '' // all undefined routes go to home
+    redirectTo: 'home' // all undefined routes go to home
   }
 ];
 

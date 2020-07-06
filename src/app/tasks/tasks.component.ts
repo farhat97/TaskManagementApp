@@ -25,9 +25,10 @@ export class TasksComponent implements OnInit {
   tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
                   'Task Name', 'Task Description', 'Options'];
   
+  filterByText: string;
+  
   // listen to queryParams in order to open New Task dialog window
   routeQueryparam$: Subscription;
-  
 
   constructor(private newTaskDialog: MatDialog, 
     private route: ActivatedRoute,
@@ -54,8 +55,11 @@ export class TasksComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+  }
 
+  filterElements(value: string) {
+    this.filterByText = value;
   }
 
   ngOnDestroy() {

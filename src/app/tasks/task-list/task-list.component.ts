@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, Input } from '@angular/core';
 
 import { ITask } from 'src/app/shared/interfaces';
 import { TaskService } from '../../shared/task.service';
 import { Task } from 'src/app/shared/Task.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dialog.component';
 
@@ -13,7 +14,7 @@ import { DeleteTaskDialogComponent } from '../delete-task-dialog/delete-task-dia
   styleUrls: [ './task-list.component.css' ]
 })
 
-export class TaskListComponent implements OnInit {
+export class TaskListComponent implements OnInit, AfterViewInit {
     
   testData: ITask[] = [
     { taskId: 1, taskType: 'Development', contactPerson: 'Sunil', dueDate: 'today', 
@@ -27,6 +28,11 @@ export class TaskListComponent implements OnInit {
   taskList: Task[] = [];
   // used for rendering material ui table
   taskListDataSource;
+  // used for table sorting
+  @ViewChild(MatSort) sort: MatSort;
+
+  // get filterBy text from parent component
+  @Input() filterBy: string = null;
 
   tableColumns = ['taskId', 'taskType', 'contactPerson', 'dueDate', 'userId',
                   'taskName', 'taskDescription'];
@@ -50,12 +56,27 @@ export class TaskListComponent implements OnInit {
 
       this.taskListDataSource = new MatTableDataSource(this.taskList);
 
+      // enable table sort
+      this.taskListDataSource.sort = this.sort;
+
     });
 
     console.log('after assigning: ', this.taskList);
   }
-
+  
   constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) { }
+  
+  ngAfterViewInit(): void {
+    this.taskListDataSource = new MatTableDataSource(this.taskList);
+    this.taskListDataSource.sort = this.sort;
+  }
+
+  // apply filtering when there are changes in the component. In this case:
+  // TaskListComponent receives filterBy text from parent, which triggers the ngOnChanges()
+  ngOnChanges() {
+    console.log('change detected');
+    this.taskListDataSource.filter = this.filterBy.trim().toLocaleLowerCase();
+  }
 
   deleteTask(row) {
     console.log('selected row: ', row);

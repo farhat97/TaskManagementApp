@@ -11,6 +11,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { MatSortModule } from '@angular/material/sort';
 import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { RouterModule } from '@angular/router';
 
@@ -30,6 +31,7 @@ import { RouterModule } from '@angular/router';
         MatDialogModule,
         MatButtonModule,
         FormsModule,
+        MatSortModule,
         RouterModule
     ],
     exports: [ TasksComponent, TaskListComponent ],

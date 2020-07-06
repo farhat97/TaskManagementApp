@@ -56,6 +56,29 @@ export class TaskService {
         catchError(this.handleErrorObservable)
       ).subscribe(r => {
         console.log('response: ', r);
-      })
+      });
+    }
+
+    deleteTask(taskId) {
+      let url = "https://localhost:44364/api/tasks/removeTask";
+      let taskObject = {
+        "taskId": taskId
+      }
+
+      console.log('called deleteTask from service, task ID: ', taskObject);
+
+      let headers = new HttpHeaders({
+        'Content-Type': 'application/json'
+      });
+
+      let options = { 
+        headers: headers
+      }
+
+      return this.httpClient.post(url, JSON.stringify(taskObject), options).pipe(
+        catchError(this.handleErrorObservable)
+      ).subscribe(r => {
+        console.log('response: ', r);
+      });
     }
 }

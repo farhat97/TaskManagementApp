@@ -12,9 +12,16 @@ import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { MatSortModule } from '@angular/material/sort';
+import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    declarations: [ TasksComponent, TaskListComponent, AddTaskComponent ],
+    declarations: [ 
+        TasksComponent, 
+        TaskListComponent, 
+        AddTaskComponent, 
+        DeleteTaskDialogComponent 
+    ],
     imports: [ 
         MatTableModule,
         CommonModule,
@@ -24,7 +31,8 @@ import { MatSortModule } from '@angular/material/sort';
         MatDialogModule,
         MatButtonModule,
         FormsModule,
-        MatSortModule
+        MatSortModule,
+        RouterModule
     ],
     exports: [ TasksComponent, TaskListComponent ],
     providers: [ ]

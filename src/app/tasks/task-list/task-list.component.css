@@ -10,7 +10,9 @@
     background-color: aqua;   
 }
 
-#someId
+
+.taskOption
 {
-    background-color: aqua;
+    margin-left: 2%;
+    display: inline-block;
 }

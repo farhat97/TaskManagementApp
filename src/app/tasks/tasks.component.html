@@ -34,7 +34,8 @@
 
         <button class="filterElement" 
                 mat-flat-button 
-                (click)="openNewTaskDialog()">
+                routerLink=""
+                [queryParams]="{newTask: 'addNewTask'}">
             Add Task
         </button>
 

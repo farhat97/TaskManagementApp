@@ -11,10 +11,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
+import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-    declarations: [ TasksComponent, TaskListComponent, AddTaskComponent ],
+    declarations: [ 
+        TasksComponent, 
+        TaskListComponent, 
+        AddTaskComponent, 
+        DeleteTaskDialogComponent 
+    ],
     imports: [ 
         MatTableModule,
         CommonModule,

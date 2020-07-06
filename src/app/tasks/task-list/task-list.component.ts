@@ -25,7 +25,7 @@ export class TaskListComponent implements OnInit, AfterViewInit {
       userId: 1, taskName: 'Develop UI', taskDescription: 'some description' }, 
   ];
 
-  taskList: Task[] = [];
+  taskList: Task[];
   // used for rendering material ui table
   taskListDataSource = new MatTableDataSource([]);
   // used for table sorting
@@ -38,6 +38,10 @@ export class TaskListComponent implements OnInit, AfterViewInit {
                   'taskName', 'taskDescription', 'Options'];
 
   ngOnInit(): void {
+
+    // clear any previous data within the taskList
+    this.taskList = [];
+
     this.taskListDataSource.data = this.taskList;
     this.taskService.getTasks().subscribe((tasks) => {
       
@@ -63,7 +67,14 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     console.log('after assigning: ', this.taskList);
   }
   
-  constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) { }
+  constructor(private taskService: TaskService, private deleteConfirmation: MatDialog) {
+    this.taskService.componentMethodCalled$.subscribe(() => {
+      console.log('method called from service, TaskListComponent.');
+
+      // call ngOnInit to update table data
+      this.ngOnInit();
+    })
+  }
   
   ngAfterViewInit(): void {
     this.taskListDataSource = new MatTableDataSource(this.taskList);
@@ -90,6 +101,9 @@ export class TaskListComponent implements OnInit, AfterViewInit {
     dialogRef.componentInstance.taskToDelete = row;
 
     dialogRef.afterClosed().subscribe(result => {
+      // refresh table
+      this.ngOnInit();      
+
       console.log(`Dialog result: ${result}`);
     });
   }

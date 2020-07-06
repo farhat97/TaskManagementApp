@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Task, TaskAdapter } from './Task.model';
 import { ITask } from './interfaces';
-import { Observable, throwError } from "rxjs";
+import { Observable, throwError, Subject } from "rxjs";
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { map, catchError } from "rxjs/operators";
 
@@ -13,6 +13,10 @@ export class TaskService {
 
     private baseUrl = "https://localhost:44364/api/tasks/allTasks";
     taskList = [];
+
+    // declare a Subject to call TaskListComponent's ngOnInit when submitted
+    private submitMethodCallSource = new Subject<any>();
+    componentMethodCalled$ = this.submitMethodCallSource.asObservable();
 
     constructor(private httpClient: HttpClient, private adapter: TaskAdapter) { }
 
@@ -56,6 +60,9 @@ export class TaskService {
         catchError(this.handleErrorObservable)
       ).subscribe(r => {
         console.log('response: ', r);
+
+        // call TaskListComponent ngOnInit
+        this.submitMethodCallSource.next();
       });
     }
 

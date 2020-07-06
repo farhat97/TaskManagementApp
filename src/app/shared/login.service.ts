@@ -14,8 +14,8 @@ export class LoginService implements OnInit {
     private baseUrl = "https://localhost:44364/token";
     public isLoggedIn = false;
 
-    private currentUserSubject: BehaviorSubject<any> = null;
-    public currentUser: Observable<any> = null;
+    private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public currentUser: Observable<any>;
 
     constructor(private httpClient: HttpClient) { }
     
@@ -54,6 +54,7 @@ export class LoginService implements OnInit {
                        console.log('sending login data');
                        localStorage.setItem('currentUser', JSON.stringify(user));
                        this.currentUserSubject.next(user);
+                       console.log('current user subj: ', this.currentUserSubject);
                        return user;
                    }));
     }

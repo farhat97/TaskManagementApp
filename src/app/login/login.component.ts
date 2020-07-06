@@ -54,9 +54,11 @@ export class LoginComponent implements OnInit {
     this.loginService.attemptLogin(contactForm.value)
                      .pipe(first())
                      .subscribe(data => {
+                       console.log('in subscribe');
                        this.router.navigate([this.returnUrl]);
                      }, error => {
                        this.error = error;
+                       console.log('error', error);
                        this.loading = false;
                      });
   }

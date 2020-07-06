@@ -15,7 +15,10 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router, private loginService: LoginService) {
     if(this.loginService.currentUser != null) {
-      this.loginService.currentUser.subscribe(x => this.currentUser = x);
+      this.loginService.currentUser.subscribe(x => {
+        this.currentUser = x;
+        console.log('changed currentUser');
+      });
     }
   }
   

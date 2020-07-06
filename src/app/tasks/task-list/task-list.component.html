@@ -1,32 +1,32 @@
 <p> Task list works! </p>
 
 <mat-table [dataSource]="taskListDataSource" class="mat-elevation-z8">
-    <ng-container matColumnDef="Task ID">
+    <ng-container matColumnDef="taskId">
         <mat-header-cell *matHeaderCellDef> Task ID </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.taskId}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Task Type">
+    <ng-container matColumnDef="taskType">
         <mat-header-cell *matHeaderCellDef> Task Type </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.taskType}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="Contact Person">
+    <ng-container matColumnDef="contactPerson">
         <mat-header-cell *matHeaderCellDef> Contact Person </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.contactPerson}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Due Date">
+    <ng-container matColumnDef="dueDate">
         <mat-header-cell *matHeaderCellDef> Due Date </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.dueDate}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="User ID">
+    <ng-container matColumnDef="userId">
         <mat-header-cell *matHeaderCellDef> User ID </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.userId}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Task Name">
+    <ng-container matColumnDef="taskName">
         <mat-header-cell *matHeaderCellDef> Task Name </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.taskName}} </mat-cell>
     </ng-container>
-    <ng-container matColumnDef="Task Description">
+    <ng-container matColumnDef="taskDescription">
         <mat-header-cell *matHeaderCellDef> Task Description </mat-header-cell>
         <mat-cell *matCellDef="let task"> {{task.taskDescription}} </mat-cell>
     </ng-container>

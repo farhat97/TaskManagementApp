@@ -12,6 +12,7 @@ import { AddTaskComponent } from './new-task/add-task/add-task.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dialog.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
     declarations: [ 
@@ -28,7 +29,8 @@ import { DeleteTaskDialogComponent } from './delete-task-dialog/delete-task-dial
         MatCheckboxModule,
         MatDialogModule,
         MatButtonModule,
-        FormsModule
+        FormsModule,
+        RouterModule
     ],
     exports: [ TasksComponent, TaskListComponent ],
     providers: [ ]

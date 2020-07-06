@@ -28,8 +28,8 @@ export class TaskListComponent implements OnInit {
   // used for rendering material ui table
   taskListDataSource;
 
-  tableColumns = ['Task ID', 'Task Type', 'Contact Person', 'Due Date', 'User ID',
-                  'Task Name', 'Task Description', 'Options'];
+  tableColumns = ['taskId', 'taskType', 'contactPerson', 'dueDate', 'userId',
+                  'taskName', 'taskDescription'];
 
   ngOnInit(): void {
     this.taskService.getTasks().subscribe((tasks) => {

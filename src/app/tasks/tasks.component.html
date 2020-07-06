@@ -1,5 +1,4 @@
 <p>Task List</p>
-
 <!-- show # of tasks filter -->
 <div class="taskFilters">
     <div class="taskFilterRow">
@@ -32,7 +31,6 @@
         <p class="filterElement">Search: </p>
         <input type="text" class="filterElement" (keyup)="filterElements($event.target.value)">
 
-        <!-- This is the approach using router. There is a bug at the moment -->
         <button class="filterElement" 
                 mat-flat-button
                 color="primary"

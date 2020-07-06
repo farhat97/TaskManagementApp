@@ -1,6 +1,9 @@
 import { Injectable, OnInit } from "@angular/core";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
+
+import { IUser } from './interfaces';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: "root"
@@ -9,10 +12,20 @@ import { catchError } from 'rxjs/operators';
 export class LoginService implements OnInit {
 
     private baseUrl = "https://localhost:44364/token";
+    public isLoggedIn = false;
 
+    private currentUserSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null);
+    public currentUser: Observable<any>;
 
     constructor(private httpClient: HttpClient) { }
     
+    public get currentUserValue() {
+        if(this.currentUserSubject != null) {
+            return this.currentUserSubject.value;
+        }
+        return null;
+    }
+
     ngOnInit(): void {
         
     }
@@ -34,16 +47,22 @@ export class LoginService implements OnInit {
         let body;
         body = `Username=${loginObj.Username}&Password=${loginObj.Password}&grant_type=${loginObj.grant_type}`;
 
-        this.httpClient
+        return this.httpClient
                    .post(this.baseUrl, 
                          body, options)
-                   .subscribe((res: Response) => {
-                       console.log(res);
-                       
-                       return true;
-                   });
+                   .pipe(map(user => {
+                       console.log('sending login data');
+                       localStorage.setItem('currentUser', JSON.stringify(user));
+                       this.currentUserSubject.next(user);
+                       console.log('current user subj: ', this.currentUserSubject);
+                       return user;
+                   }));
+    }
 
-        return false;
+    logout() {
+        // remove user from local storage and set current user to null
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
     }
 
 }

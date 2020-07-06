@@ -7,3 +7,8 @@ export interface ITask {
     taskName: string;
     taskDescription: string;
 }
+
+export interface IUser {
+    username: string;
+    password: string;
+}

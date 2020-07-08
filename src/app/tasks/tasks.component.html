@@ -2,39 +2,32 @@
 <!-- show # of tasks filter -->
 <div class="taskFilters">
     <div class="taskFilterRow">
-        <p class="filterElement">Show </p>
-        <select matNativeControl class="filterElement">
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-        </select>
-        <p class="filterElement">tasks</p>
+        <p class="filterElement">Search: </p>
+        <input type="text" class="filterElement" (keyup)="filterElements($event.target.value)">
     </div>
 
     <div class="taskFilterRow">
-        <p class="filterElement">Order By: </p>
+        <!-- <p class="filterElement">Order By: </p> -->
         <!-- TODO: retrieve options from task properties! -->
-        <select matNativeControl class="filterElement">
+        <!-- <select matNativeControl class="filterElement">
             <option value="contactName">Contact Name</option>
             <option value="userId">User ID</option>
             <option value="dueDate">Due Date</option>
         </select>
         <p class="filterElement">Descending </p>
-        <input type="checkbox" style="margin-left: 1%;">
+        <input type="checkbox" style="margin-left: 1%;"> -->
         
         <!-- TODO: material checkbox has a weird alignemnt-->
         <!-- <mat-checkbox class="filterElement" style="text-align: center;">
             Descending
         </mat-checkbox> -->
 
-        <p class="filterElement">Search: </p>
-        <input type="text" class="filterElement" (keyup)="filterElements($event.target.value)">
-
-        <button class="filterElement" 
+        <button 
+                id="addTaskBtn"
                 mat-flat-button
                 color="primary"
                 routerLink=""
+                style="position: absolute; right: 3px;"
                 [queryParams]="{newTask: 'addNewTask'}">
             Add Task
         </button>

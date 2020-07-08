@@ -3,6 +3,7 @@ import { LoginService } from '../shared/login.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { LoginErrorDialogComponent } from './login-error-dialog/login-error-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService,
               private formBuilder: FormBuilder,
               private route: ActivatedRoute,
-              private router: Router) { 
+              private router: Router,
+              private errorDialog: LoginErrorDialogComponent) { 
               
                 if(this.loginService.currentUserValue) {
                   // redirect to home page
@@ -59,6 +61,9 @@ export class LoginComponent implements OnInit {
                      }, error => {
                        this.error = error;
                        console.log('error', error);
+
+                       // show error message
+
                        this.loading = false;
                      });
   }
